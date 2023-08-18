@@ -70,4 +70,16 @@ class CategoriaController extends Controller
         $categoria->delete();
         return to_route('categorias.index')->with('info', 'Categoría eliminada con éxito');
     }
+
+    //Protegemos las rutas de este controlador con el middleware auth y admin (autenticado y rol de admin)
+    public function __construct()
+    {
+        //Sólo los usuarios autenticados y con rol de admin pueden acceder a todos los métodos de este controlador
+        $this->middleware('auth');
+        $this->middleware('admin');
+    }
+
+
+
+
 }

@@ -14,4 +14,9 @@ class Producto extends Model
     {
         return $this->belongsTo(Categoria::class);  // Un producto pertenece a una categoria
     }
+
+    public function pedidos()
+    {
+        return $this->belongsToMany(Pedido::class)->withPivot('cantidad', 'precio');  // Un producto puede estar en varios pedidos
+    }
 }
